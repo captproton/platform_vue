@@ -73,7 +73,8 @@ end
 gem "madmin", github: "excid3/madmin"
 gem "bootstrap", "~> 4.5"
 gem "devise", "~> 4.7", ">= 4.7.1"
-gem "devise-bootstrapped", github: "excid3/devise-bootstrapped", branch: "bootstrap4"
+# gem "devise-bootstrapped", github: "excid3/devise-bootstrapped", branch: "bootstrap4"
+gem 'devise-tailwinded', '~> 0.1.5'
 gem "devise_masquerade", "~> 1.2"
 gem "friendly_id", "~> 5.3"
 gem "image_processing"
