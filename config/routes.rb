@@ -17,7 +17,17 @@ Rails.application.routes.draw do
   
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
+  # users
+  as :user do
+    put '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
+  end
+
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", 
+                                    registrations: 'registrations',
+                                    confirmations: 'confirmations'  
+  }
+
   root to: 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
