@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/home'
   resources :announcements, only: [:index], export: true
   devise_for :users
   root to: 'home#index'
