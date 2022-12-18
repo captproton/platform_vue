@@ -67,7 +67,7 @@
                         <div class="level">
                             <div class="level-left">
                                 <h3 class="subtitle is-5">My Teams <span class="tag is-rounded">
-                                        <%= @teams.count %>
+                                        <%= @owned_teams.count %>
                                     </span></h3>
                             </div>
                             <div class="level-right">
@@ -79,16 +79,16 @@
                             </div>
                         </div>
                         <hr />
-                        <% @teams.each do |team| %>
+                        <% @owned_teams.each do |owned_team| %>
                             <div class="content border-bottom pb4">
                                 <p class="title is-4">
-                                    <%= link_to team.name, team %>
+                                    <%= link_to owned_team.name, owned_team %>
                                 </p>
                                 <p class="subtitle is-6">
-                                    <%= team.users.count %> Members
+                                    <%= owned_team.users.count %> Members
                                 </p>
                                 <span class="f6">
-                                    <%= safe_join(team.users.map { |user| user.name }, ', ' ) %>
+                                    <%= safe_join(owned_team.users.map { |user| user.name }, ', ' ) %>
                                 </span>
                             </div>
                             <% end %>

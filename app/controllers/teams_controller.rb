@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams or /teams.json
   def index
   	if user_signed_in?
-  		@teams = current_user.teams
+  		@owned_teams = current_user.owned_teams
   		@sites = current_user.sites
   	end
 
