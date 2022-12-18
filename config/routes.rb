@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sites
   resources :teams
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'

@@ -10,6 +10,8 @@ has_person_name
   has_many :team_memberships
   has_many :teams, through: :team_memberships
 
+  has_many :sites
+
   # new function to set the password without knowing the current
   # password used in our confirmation controller.
   def attempt_set_password(params)

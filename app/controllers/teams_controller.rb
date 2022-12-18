@@ -1,9 +1,16 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /teams or /teams.json
   def index
-    @teams = Team.all
+  	if user_signed_in?
+  		@teams = current_user.teams
+  		@sites = current_user.sites
+  	end
+
+  	# @activities = PublicActivity::Activity.order("created_at DESC").where(owner_id: current_user, owner_type: "User")    
+    # @teams = Team.all
   end
 
   # GET /teams/1 or /teams/1.json
