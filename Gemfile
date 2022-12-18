@@ -91,3 +91,5 @@ gem "whenever", require: false
 gem "hotwire-rails"
 gem "vite_rails"
 gem "js_from_routes", group: :development
+
+gem "simple_form", "~> 5.1"
