@@ -1,0 +1,112 @@
+<%#
+ <div class="mt-4 -mb-3">
+    <div class="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+        <div style="background-position:10px 10px"
+            class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]">
+        </div>
+        <div class="relative rounded-xl overflow-auto p-8">
+            <div
+                class="grid grid-cols-3 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+                <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">
+                    first column
+                </div>
+                <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">02</div>
+                <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">03</div>
+            </div>
+        </div>
+        <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+    </div>
+</div> 
+%>
+
+<section class="section pt3">
+    <p class="mt-4 -mb-3">Welcome <%= current_user.name.first %> 👋🏻</p>
+
+    <div class="mt-4 -mb-3">
+        <div class="not-prose relative bg-slate-50 rounded-xl overflow-hidden dark:bg-slate-800/25">
+            <div style="background-position:10px 10px"
+                class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] dark:bg-grid-slate-700/25 dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.5))]">
+            </div>
+            <div class="relative rounded-xl overflow-auto p-8">
+                <div
+                    class="grid grid-cols-3 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+                    <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">
+                        first column<br />
+                                    <div class="level">
+                                        <div class="level-left">
+                                            <h3 class="subtitle is-5">My Sites <span class="tag is-rounded">
+                                                    <%= @sites.count %>
+                                                </span></h3>
+                                        </div>
+                                        <div class="level-right">
+                                            <p class="field">
+                                                <%= link_to new_site_path, class: 'button is-small' do %>
+                                                    <span class="icon is-small has-text-link"><i class="fa fa-plus"></i></span>
+                                                    <% end %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <% @sites.each do |site| %>
+                                        <div class="content border-bottom pb4">
+                                            <p class="title is-4">
+                                                <%= link_to site.name, site %>
+                                            </p>
+                                            <p class="subtitle is-6">
+                                                <%= link_to site.team.name, site.team %>
+                                            </p>
+                                            <p class="f6">Created by: <%= site.user.name %>
+                                            </p>
+                                        </div>
+                                        <% end %>
+
+                    </div>
+                    <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">
+                        second column<br />
+
+                        <div class="level">
+                            <div class="level-left">
+                                <h3 class="subtitle is-5">My Teams <span class="tag is-rounded">
+                                        <%= @owned_teams.count %>
+                                    </span></h3>
+                            </div>
+                            <div class="level-right">
+                                <p class="field">
+                                    <%= link_to new_team_path, class: 'button is-small' do %>
+                                        <span class="icon is-small has-text-link"><i class="fa fa-plus"></i></span>
+                                        <% end %>
+                                </p>
+                            </div>
+                        </div>
+                        <hr />
+                        <% @owned_teams.each do |owned_team| %>
+                            <div class="content border-bottom pb4">
+                                <p class="title is-4">
+                                    <%= link_to owned_team.name, owned_team %>
+                                </p>
+                                <p class="subtitle is-6">
+                                    <%= owned_team.users.count %> Members
+                                </p>
+                                <span class="f6">
+                                    <%= safe_join(owned_team.users.map { |user| user.name }, ', ' ) %>
+                                </span>
+                            </div>
+                            <% end %>
+
+                    </div>
+                    <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">
+                        03 <br /> 
+                        <h3 class="subtitle is-5">Activity</h3>
+                        <hr />
+                        <ul class="list">
+                            <%#= render_activities(@activities) %>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="absolute inset-0 pointer-events-none border border-black/5 rounded-xl dark:border-white/5"></div>
+        </div>
+    </div>
+
+</section>
