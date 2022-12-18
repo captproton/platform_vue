@@ -1,3 +1,7 @@
+<% label_classes="block text-sm font-bold mb-2 #{alert ? " text-red-500" : "text-gray-700" }"
+    input_classes="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline #{alert ? "
+    border-red-500" : nil}" %>
+
 <section class="section">
   <div class="columns is-centered">
     <div class="column is-4">
@@ -10,12 +14,12 @@
 
 		   <div class="field">
         <div class="control">
-		    <%= f.input :email, required: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+		    <%= f.input :email, required: true, input_html: { class: input_classes}, wrapper: false, label_html: { class: label_classes } %>
 		  	</div>
 			</div>
 
 		  <div class="form-actions">
-		    <%= f.button :submit, "Resend confirmation instructions", class:'button is-link' %>
+		    <%= f.button :submit, "Resend confirmation instructions", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline" %>
 		  </div>
 		<% end %>
 

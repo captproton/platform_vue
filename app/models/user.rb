@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :omniauthable, :masqueradable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
+has_person_name
+
   has_many :owned_teams, foreign_key: 'user_id', class_name: 'Team'
   has_many :team_memberships
   has_many :teams, through: :team_memberships
@@ -14,7 +16,7 @@ class User < ApplicationRecord
     p = {}
     p[:password] = params[:password]
     p[:password_confirmation] = params[:password_confirmation]
-    update_attributes(p)
+    update(p)
   end
 
   def password_match?
