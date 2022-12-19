@@ -1,0 +1,8 @@
+<p style="color: green"><%= notice %></p>
+
+
+<% if user_signed_in? %>
+	<%= render 'dashboard' %>
+	<% else %>
+	<%= render 'home' %>
+<% end %>

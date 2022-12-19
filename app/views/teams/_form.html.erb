@@ -1,3 +1,8 @@
+<% label_classes="block text-sm font-bold mb-2 #{alert ? " text-red-500" : "text-gray-700" }"
+  input_classes="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline #{alert ? "
+  border-red-500" : nil}" %>
+
+
 <%= form_with(model: team) do |form| %>
   <% if team.errors.any? %>
     <div style="color: red">
@@ -12,16 +17,14 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, style: "display: block", class: label_classes %>
+    <%= form.text_field :name, class: input_classes %>
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+    <%= form.submit "Submit" ,
+                  class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
+                  %>
 
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>
