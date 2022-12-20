@@ -1,8 +1,8 @@
 <template lang="">
-    <div>
-        <h1>Vue</h1>
-        <Counter />
-    </div>
+ <div id='hello'>
+   {{message}}
+   <app></app>
+ </div>
 </template>
 
 <script>
