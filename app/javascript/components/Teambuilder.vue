@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        <h1>Vue</h1>
+        <h1>Teambuilder</h1>
         <Counter />
     </div>
 </template>

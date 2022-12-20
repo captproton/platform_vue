@@ -1,9 +1,12 @@
 class SitesController < ApplicationController
   before_action :set_site, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
   # GET /sites or /sites.json
   def index
     @sites = Site.all
+    # to only show the sites that the user is working on, 
+    #  maybe do something like this:
+    # @current_user_teams = current_user.teams.map {|team| team.sites}
   end
 
   # GET /sites/1 or /sites/1.json
@@ -12,7 +15,8 @@ class SitesController < ApplicationController
 
   # GET /sites/new
   def new
-    @site = Site.new
+    @site = current_user.sites.build
+    @teams = current_user.teams
   end
 
   # GET /sites/1/edit
@@ -21,7 +25,7 @@ class SitesController < ApplicationController
 
   # POST /sites or /sites.json
   def create
-    @site = Site.new(site_params)
+    @site = current_user.sites.new(site_params)
 
     respond_to do |format|
       if @site.save
@@ -52,7 +56,7 @@ class SitesController < ApplicationController
     @site.destroy
 
     respond_to do |format|
-      format.html { redirect_to sites_url, notice: "Site was successfully destroyed." }
+      format.html { redirect_to backstage_path, notice: "Site was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +69,6 @@ class SitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:name, :description, :user_id, :team_id)
+      params.require(:site).permit(:name, :description, :team_id)
     end
 end

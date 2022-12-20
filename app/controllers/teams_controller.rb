@@ -1,16 +1,9 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
-
+  before_action :authenticate_user! , only: %i[ show edit update destroy ]
   # GET /teams or /teams.json
   def index
-  	if user_signed_in?
-  		@owned_teams = current_user.owned_teams
-  		@sites = current_user.sites
-  	end
-
-  	# @activities = PublicActivity::Activity.order("created_at DESC").where(owner_id: current_user, owner_type: "User")    
-    # @teams = Team.all
+    @teams = Team.all.order("created_at DESC")  
   end
 
   # GET /teams/1 or /teams/1.json
@@ -19,7 +12,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.new
+    @team = current_user.teams.build
+    @user = current_user
   end
 
   # GET /teams/1/edit
@@ -28,11 +22,20 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
+    # establish team
+    @team             = current_user.teams.build(team_params)
+
+    # establish team owner
+    @team.user        = current_user
+
+    # make the owner also a member of the team
+    # @team_membership  = @team.team_memberships.build(user: current_user)
+    @team.add_subscriber(current_user)
+
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to team_url(@team), notice: "Team was successfully created." }
+        format.html { redirect_to backstage_index_path, notice: "Team was successfully created." }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +62,7 @@ class TeamsController < ApplicationController
     @team.destroy
 
     respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
+      format.html { redirect_to backstage_index_path, notice: "Team was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -72,6 +75,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:name, :user_id)
+    params.require(:team).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
     end
 end

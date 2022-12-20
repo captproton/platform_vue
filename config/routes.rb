@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :sites
   resources :teams
+  get 'backstage/index'
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
   get 'pages/home'
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     # end
   end
   
+  resources :backstage
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
 

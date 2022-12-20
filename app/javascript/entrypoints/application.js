@@ -38,3 +38,9 @@ import App from "../components/App.vue";
 
 // Create Vue App
 const app = createApp(App).mount("#app");
+
+// Import Components
+import Hello from "../components/Hello.vue";
+
+// Create Vue App
+const hello = createApp(Hello).mount('[data-behavior="vue"]');
