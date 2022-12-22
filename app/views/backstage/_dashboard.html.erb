@@ -15,7 +15,7 @@
                                     <div class="level">
                                         <div class="level-left">
                                             <h3 class="subtitle is-5">My Sites <span class="tag is-rounded">
-                                                    <%= @sites.count %>
+                                                    <%= @owned_sites.count %>
                                                 </span></h3>
                                         </div>
                                         <div class="level-right">
@@ -27,18 +27,25 @@
                                         </div>
                                     </div>
                                     <hr />
-                                    <% @sites.each do |site| %>
-                                        <div class="content border-bottom pb4">
-                                            <p class="title is-4">
-                                                <%= link_to "Site: #{site.name} ", site %>
-                                            </p>
-                                            <p class="subtitle is-6">
-                                                <%= link_to  link_to "Team: #{site.team.name} ", site.team %>
-                                            </p>
-                                            <p class="f6">Created by: <%= site.user.name %>
-                                            </p>
-                                        </div>
+                                    <h2>Sites started by me</h2>
+                                    <ul>
+                                    <% @owned_sites.each do |site| %>
+                                        <li>
+                                            <%= link_to site.name, site_path(site) %> <br>
+
+                                    <% end %>
+
+                                    </ul>
+                                    <p>====</p>
+                                    <h2>Team Sites</h2>
+                                    <% if @current_user_team_memberships.count > 0 %>
+                                        <%  @current_user_team_memberships.each do |team_membership| %>
+                                            <% team_membership.team.sites.each do |site| %>
+                                            <%= link_to site.name, site_path(site) %> <br>
+                                            <% end %>
                                         <% end %>
+                                    <% end %>
+
 
                     </div>
                     <div class="p-4 rounded-lg shadow-lg bg-fuchsia-500">

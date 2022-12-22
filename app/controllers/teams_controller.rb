@@ -6,6 +6,8 @@ class TeamsController < ApplicationController
     @teams = Team.all.order("created_at DESC")  
     @teams_owned_by_current_user = current_user.owned_teams
     @teams_including_current_user = current_user.teams
+
+    @owned_sites = Site.where(user_id: current_user.id)
 end
 
   # GET /teams/1 or /teams/1.json
