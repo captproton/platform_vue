@@ -1,11 +1,11 @@
 class Team < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
 
   has_many :sites, dependent: :destroy
   has_many :team_memberships, dependent: :destroy
   has_many :users, through: :team_memberships
 
-	accepts_nested_attributes_for :users, allow_destroy: true
+	accepts_nested_attributes_for :users
 
   def subscribers
     self.users

@@ -1,0 +1,9 @@
+<%= fields_for "team[users_attributes][#{user.persisted? ? user.id : Time.now.to_i }]", user do |ff| %>
+  <fieldset class="mb-4">
+    <legend>User Info</legend>
+    <%= ff.label :name %><br>
+    <%= ff.text_field :name, class: "px-2 py-1 mb-1 border w-full rounded-md" %>
+    <%= ff.text_field :email, class: "px-2 py-1 border w-full rounded-md" %>
+    <%= ff.hidden_field :id %>
+  </fieldset>
+<% end %>

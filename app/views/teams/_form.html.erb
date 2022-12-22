@@ -1,80 +1,35 @@
-<% label_classes="block text-sm font-bold mb-2 #{alert ? " text-red-500" : "text-gray-700" }"
-  input_classes="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline #{alert ? "
-  border-red-500" : nil}" 
-  submit_button_classes="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
-  
-%>
+<%= form_with(model: team, class: "space-y-4") do |form| %>
+  <% if team.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
 
-
-<div class="field">
-  <div class="control">
-    <label class="<%= label_classes %>">Team Name</label>
-    <input type="text" class="<%= input_classes %>" v-model="team.name" />
-  </div>
-</div>
-
-<div class="content">
-  <h2 class="font-medium text-lg mb-2">Invite users</h2>
-  <p>Invite users to create an account and join this team. Each user will be sent a confirmation email in which they can
-    supply their own unique password.</p>
-</div>
-
-<div v-for="(user, index) in team.users_attributes">
-  <div v-if="user._destroy =='1'">
-    {{ user.name }} will be removed.
-    <button v-on:click="undoRemove(index)" 
-            class="text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"  
-            >
-            Undo
-    </button>
-  </div>
-  <div v-else>
-    <div class="field">
-      <div class="control">
-        <label class="<%= label_classes %>">Name</label>
-        <input type="text" class="<%= input_classes %>" v-model="user.name" />
-      </div>
+      <ul>
+        <% team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="field">
-      <div class="control">
-        <label class="<%= label_classes %>">Email</label>
-        <input type="text" class="<%= input_classes %>" v-model="user.email" />
-        <div id="errors" class="has-text-danger" v-if="errors.length">{{ errors }}</div>
-      </div>
-    </div>
-    <input type="hidden" value="<%= current_user.id %>" />
-    <div class="field">
-      <div class="control">
-        <button v-on:click="removeUser(index)" 
-                class="text-pink-500 border border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                >
-                Remove
-        </button>
-      </div>
-    </div>
+  <fieldset>
+    <legend>Team Info</legend>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: "px-2 py-1 border w-full rounded-md" %>
+  </fieldset>
+
+  <div id="users" class="mb-2">
+    <%= render partial: "user", collection: @team.users %>
   </div>
-  <hr />
-</div>
 
-<div class="field">
-  <div class="control">
-    <button v-on:click="addUser" class="<%= submit_button_classes %>" >Add User</button>
+  <div class="mb-2">
+    <%= link_to "Add a User", user_field_teams_path, data: { turbo_stream: true }, class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400" %>
   </div>
-</div>
 
-<hr />
-
-<div class="field">
-  <div class="control">
-    <% if current_page?(new_team_path) %>
-      <button v-on:click="saveTeam" 
-              class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
-              >
-              Create Team
-      </button>
+  <div>
+    <% if form.object.persisted? %>
+      <%= form.submit "Update", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
     <% else %>
-        <button v-on:click="saveTeam" class="<%= submit_button_classes %>" >Save Team</button>
+      <%= form.submit "Create", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
     <% end %>
   </div>
-</div>
+<% end %>

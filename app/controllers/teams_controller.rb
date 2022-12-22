@@ -12,8 +12,14 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = current_user.teams.build
-    @user = current_user
+    @team = current_user.teams.new
+    @team.users.build
+    # @user = current_user
+
+    # demo code
+    # @project = Project.new
+    # @project.tasks.build
+
   end
 
   # GET /teams/1/edit
@@ -22,15 +28,19 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
+    # demo code
+    # @project = Project.new(project_params)
+
     # establish team
-    @team             = current_user.teams.build(team_params)
+    @team             = current_user.teams.new(team_params)
+
 
     # establish team owner
-    @team.user        = current_user
+    # @team.user        = current_user
 
     # make the owner also a member of the team
     # @team_membership  = @team.team_memberships.build(user: current_user)
-    @team.add_subscriber(current_user)
+    # @team.add_subscriber(current_user)
 
 
     respond_to do |format|
@@ -67,6 +77,9 @@ class TeamsController < ApplicationController
     end
   end
 
+  def user_field
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
@@ -75,6 +88,9 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-    params.require(:team).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
+      # example code 
+      # params.require(:project).permit(:name, tasks_attributes: [:id, :name])
+
+      params.require(:team).permit(:name, users_attributes: [:id, :name, :email, :_destroy])
     end
 end

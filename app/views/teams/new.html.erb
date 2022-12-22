@@ -1,38 +1,11 @@
-<div class="container" data-behavior="vue">
+<div class="space-y-4 mt-8 mx-auto max-w-lg bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg font-mono">
+  <h1 class="text-3xl text-center">
+    New Team
+  </h1>
 
+  <%= render "form", team: @team %>
+
+  <div class="text-center">
+    <%= link_to "Back to teams", teams_path, class: "hover:text-blue-400" %>
+  </div>
 </div>
-
-
-<section class="section" style="max-width: 520px">
-  <%= content_tag :div, 
-                  id: "team-form" , 
-                  data: { id: @team.id, 
-                          team: @team.to_json(except: [:id, :created_at, :update_at]), 
-                          users_attributes: @team.users.to_json(except: [:created_at, :update_at]) 
-                          } do 
-    %>
-
-    <div class="column is-5" :class="{ formstatic: scrollPosition < 100, formfixed: scrollPosition > 100 }">
-      <h1 class="font-medium text-lg mb-2">Create a new team</h1>
-      <%= render 'form' , team: @team %>
-    </div>
-    <div class="column is-5" :class="{ datastatic: scrollPosition < 100, datafixed: scrollPosition > 100 }">
-
-      <h2 class="subtitle is-3">{{ team.name }}</h2>
-      
-      <table class="table is-fullwidth" v-if="team.users_attributes.length">
-        <thead>
-          <th>Name</th>
-          <th>Email</th>
-        </thead>
-
-        <tr class="user" v-for="(user, index) in team.users_attributes">
-          <td>{{ user.name}}</td>
-          <td>{{ user.email}}</td>
-        </tr>
-        
-      </table>
-    </div>
-
-  <% end %>
-</section>

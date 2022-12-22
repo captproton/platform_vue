@@ -1,10 +1,17 @@
 <p style="color: green"><%= notice %></p>
+<div class="space-y-4 mt-8 mx-auto max-w-lg bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg font-mono">
 
-<%= render @team %>
+  <%= render @team %>
 
-<div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
-  <%= link_to "Back to teams", teams_path %>
+  <ul>
+    <% @team.tasks.each do |task| %>
+      <li><%= task.name %></li>
+    <% end %>
+  </ul>
 
-  <%= button_to "Destroy this team", @team, method: :delete %>
+  <div class="text-center">
+    <%= link_to "Edit this team", edit_team_path(@team), class: "hover:text-blue-400" %> |
+    <%= link_to "Back to teams", teams_path, class: "hover:text-blue-400" %>
+    <%= button_to "Destroy this team", @team, method: :delete, class: "hover:text-blue-400"  %>
+  </div>
 </div>

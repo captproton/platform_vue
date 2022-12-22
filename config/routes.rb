@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   resources :tasks
-    resources :projects do
+  resources :projects do
     collection do
       get "task_field"
+    end
+  end
+
+  resources :teams do
+    collection do
+      get "user_field"
     end
   end
 
