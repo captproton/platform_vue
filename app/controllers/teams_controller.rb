@@ -4,7 +4,9 @@ class TeamsController < ApplicationController
   # GET /teams or /teams.json
   def index
     @teams = Team.all.order("created_at DESC")  
-  end
+    @teams_owned_by_current_user = current_user.owned_teams
+    @teams_including_current_user = current_user.teams
+end
 
   # GET /teams/1 or /teams/1.json
   def show
@@ -36,10 +38,11 @@ class TeamsController < ApplicationController
 
 
     # establish team owner
-    # @team.user        = current_user
+    @team.user_id        = current_user.id
+    # current_user.teams = @team
 
     # make the owner also a member of the team
-    # @team_membership  = @team.team_memberships.build(user: current_user)
+    @team_membership  = @team.team_memberships.build(user: current_user)
     # @team.add_subscriber(current_user)
 
 
