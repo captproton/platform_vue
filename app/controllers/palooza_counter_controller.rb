@@ -1,0 +1,2 @@
+class PaloozaCounterController < ApplicationController
+end

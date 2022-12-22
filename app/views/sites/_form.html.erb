@@ -1,0 +1,31 @@
+<% label_classes="block text-sm font-bold mb-2 #{alert ? " text-red-500" : "text-gray-700" }"
+  input_classes="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline #{alert ? "
+  border-red-500" : nil}" %>
+
+<%= simple_form_for(@site) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, 
+                label_html: { class: label_classes },
+                input_html: { class: input_classes } 
+    %>
+    <%= f.input :description, 
+                label_html: { class: label_classes },
+                input_html: { class: input_classes } 
+    %>
+
+    <%= f.association :team, 
+                label_html: { class: label_classes },
+                input_html: { class: input_classes } 
+    %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Submit" ,
+      class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-6 rounded focus:outline-none focus:shadow-outline"
+      %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<%= form_with(model: team, class: "space-y-4") do |form| %>
+  <% if team.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+        <% team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>Team Info</legend>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, class: "px-2 py-1 border w-full rounded-md" %>
+  </fieldset>
+
+  <div id="users" class="mb-2">
+    <%= render partial: "user", collection: @team.users %>
+  </div>
+
+  <div class="mb-2">
+    <%= link_to "Add a User", user_field_teams_path, data: { turbo_stream: true }, class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400" %>
+  </div>
+
+  <div>
+    <% if form.object.persisted? %>
+      <%= form.submit "Update", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
+    <% else %>
+      <%= form.submit "Create", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
+    <% end %>
+  </div>
+<% end %>
