@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/captproton/platform_press
+  revision: 5c733aca6217d2e48357c94ddb08f6c4795455ba
+  branch: develop
+  specs:
+    platform_press (0.1.0)
+      cssbundling-rails
+      jsbundling-rails
+      rails (>= 7.0.4)
+      stimulus-rails
+      turbo-rails
+
+GIT
   remote: https://github.com/excid3/madmin.git
   revision: 2351ae087bf4cbe871dc80b48efade224f37fe6b
   specs:
@@ -100,6 +112,8 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
+    cssbundling-rails (1.1.2)
+      railties (>= 6.0.0)
     date (3.3.2)
     debug (1.7.0)
       irb (>= 1.5.0)
@@ -161,6 +175,8 @@ GEM
       activesupport (>= 5.0.0)
     js_from_routes (2.0.6)
       railties (>= 5.1, < 8)
+    jsbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     jwt (2.5.0)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -387,6 +403,7 @@ DEPENDENCIES
   omniauth-github (~> 1.4)
   omniauth-twitter (~> 1.4)
   pg (~> 1.1)
+  platform_press!
   puma (~> 5.0)
   pundit (~> 2.1)
   rails (~> 7.0.4)
