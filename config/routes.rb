@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :tasks
+    resources :projects do
+    collection do
+      get "task_field"
+    end
+  end
+
   resources :sites
   resources :teams
   get 'backstage/index'
