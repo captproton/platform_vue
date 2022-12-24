@@ -146,6 +146,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashids (1.0.6)
     hashie (5.0.0)
     hotwire-rails (0.1.3)
       rails (>= 6.0.0)
@@ -253,6 +254,9 @@ GEM
       activesupport
     pg (1.4.5)
     popper_js (1.16.1)
+    prefixed_ids (1.3.0)
+      hashids (>= 1.0.0, < 2.0.0)
+      rails (>= 6.0.0)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -404,6 +408,7 @@ DEPENDENCIES
   omniauth-twitter (~> 1.4)
   pg (~> 1.1)
   platform_press!
+  prefixed_ids (~> 1.3)
   puma (~> 5.0)
   pundit (~> 2.1)
   rails (~> 7.0.4)
