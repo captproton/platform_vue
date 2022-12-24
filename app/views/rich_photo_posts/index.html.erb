@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rich photo posts</h1>
+
+<div id="rich_photo_posts">
+  <% @rich_photo_posts.each do |rich_photo_post| %>
+    <%= render rich_photo_post %>
+    <p>
+      <%= link_to "Show this rich photo post", rich_photo_post, class: "text-blue-500" %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rich photo post", new_rich_photo_post_path, class: "text-blue-500" %>

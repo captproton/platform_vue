@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pages
+  resources :rich_photo_posts
   resources :tasks
   resources :projects do
     collection do

@@ -94,6 +94,7 @@ gem 'vite_rails'
 gem 'whenever', require: false
 
 # app-specific gems
+gem 'acts_as_list', '~> 1.0'
 gem 'platform_press', git: 'https://github.com/captproton/platform_press', branch: 'develop'
 gem 'prefixed_ids', '~> 1.3'
 gem 'simple_form', '~> 5.1'

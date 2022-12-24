@@ -1,0 +1,36 @@
+<%= form_with(model: rich_photo_post, class: "space-y-4") do |form| %>
+  <% if rich_photo_post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(rich_photo_post.errors.count, "error") %> prohibited this rich_photo_post from being saved:</h2>
+
+      <ul>
+        <% rich_photo_post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>Post Info</legend>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: "px-2 py-1 border w-full rounded-md" %>
+
+    <div class="field">
+      <%= form.label :body %>
+      <%= form.rich_text_area :body %>
+
+      <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+    </div>
+    
+  </fieldset>
+
+    <div>
+    <% if form.object.persisted? %>
+      <%= form.submit "Update", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
+    <% else %>
+      <%= form.submit "Create", class: "p-2 rounded-md bg-blue-300 hover:bg-blue-400 w-full" %>
+    <% end %>
+  </div>
+
+<% end %>

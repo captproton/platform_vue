@@ -3,3 +3,10 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "trix"
 import "@rails/actiontext"
+
+
+require("trix") 
+require("@rails/actiontext")
+
+require("stylesheets/application.scss") 
+
