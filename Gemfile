@@ -45,9 +45,6 @@ gem 'bootsnap', require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -81,6 +78,7 @@ gem 'devise_masquerade', '~> 1.2'
 gem 'devise-tailwinded', '~> 0.1.5'
 gem 'friendly_id', '~> 5.3'
 gem 'hotwire-rails'
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing'
 gem 'js_from_routes', group: :development
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
@@ -96,7 +94,9 @@ gem 'vite_rails'
 gem 'whenever', require: false
 
 # app-specific gems
+gem 'acts_as_list', '~> 1.0'
 gem 'platform_press', git: 'https://github.com/captproton/platform_press', branch: 'develop'
+gem 'prefixed_ids', '~> 1.3'
 gem 'simple_form', '~> 5.1'
 
 # Please DO NOT ADD BELOW THIS LINE.  TIDY UP.

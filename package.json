@@ -4,7 +4,7 @@
     "@jridgewell/sourcemap-codec": "^1.4.14",
     "@js-from-routes/client": "^1.0.3",
     "@popperjs/core": "^2.11.6",
-    "@rails/actiontext": "^7.0.4",
+    "@rails/actiontext": "7.0.4",
     "@vitejs/plugin-vue": "^4.0.0",
     "bootstrap": "^5.2.3",
     "data-confirm-modal": "^1.6.2",
@@ -19,7 +19,8 @@
     "trix": "^2.0.4",
     "typescript": "^4.9.4",
     "vite-plugin-full-reload": "^1.0.5",
-    "vite-plugin-stimulus-hmr": "^3.0.0"
+    "vite-plugin-stimulus-hmr": "^3.0.0",
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "vite": "^4.0.0",

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_231000) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_24_183439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,10 +61,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_231000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.integer "position"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_pages_on_parent_id"
+    t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rich_photo_posts", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "body"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -119,6 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_231000) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "pages", "pages", column: "parent_id"
+  add_foreign_key "pages", "users"
   add_foreign_key "sites", "teams"
   add_foreign_key "sites", "users"
   add_foreign_key "tasks", "projects"

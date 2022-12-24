@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rich_photo_post %>
+
+<div>
+  <%= link_to "Edit this rich photo post", edit_rich_photo_post_path(@rich_photo_post), class: "text-blue-500" %> |
+  <%= link_to "<< Back to rich photo posts", rich_photo_posts_path, class: "text-blue-500" %>
+
+  <%= button_to "Destroy this rich photo post", @rich_photo_post, class: "text-red-500", method: :delete %>
+</div>
