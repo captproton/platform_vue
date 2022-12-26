@@ -100,3 +100,12 @@ gem 'prefixed_ids', '~> 1.3'
 gem 'simple_form', '~> 5.1'
 
 # Please DO NOT ADD BELOW THIS LINE.  TIDY UP.
+
+group :development, :test do
+  gem "rspec-rails"
+end
+
+group :development, :test do
+  gem "factory_bot_rails"
+end
+gem "standard", group: [:development, :test]
