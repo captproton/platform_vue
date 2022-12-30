@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_24_183439) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_012924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_183439) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "slug"
@@ -70,7 +81,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_183439) do
     t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "site_id", null: false
     t.index ["parent_id"], name: "index_pages_on_parent_id"
+    t.index ["site_id"], name: "index_pages_on_site_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
@@ -150,6 +163,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_183439) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "pages", "pages", column: "parent_id"
+  add_foreign_key "pages", "sites"
   add_foreign_key "pages", "users"
   add_foreign_key "sites", "teams"
   add_foreign_key "sites", "users"

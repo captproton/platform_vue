@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'actiontext.css';
 
-a {
-    color: orange;
+@layer components {
+    .grid-body {
+        @apply grid;
+        grid-template-columns: 14rem 1fr;
+    }
+
+    #nav-sidebar button.top {
+        @apply px-4 py-1 flex w-full items-center justify-start space-x-2 hover: bg-rose-200;
+    }
 }

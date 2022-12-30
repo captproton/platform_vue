@@ -1,19 +1,32 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[show edit update destroy]
+  before_action :set_site, only: %i[index show]
+  before_action :authenticate_user!
 
+  layout 'sites'
   def home; end
+
+  # GET /pages/1 or /pages/1.json
+  def show
+    @pages = @current_site.pages
+  end
 
   # GET /pages or /pages.json
   def index
-    @pages = Page.all
-  end
+    current_site = Site.first
 
-  # GET /pages/1 or /pages/1.json
-  def show; end
+    @page = if @current_site.pages.count > 0
+              @current_site.pages.first
+            else
+              @current_site.pages.create!(user: current_user)
+            end
+    redirect_to @page
+  end
 
   # POST /pages or /pages.json
   def create
     @page = Page.new(page_params)
+    @page.update_slug
 
     respond_to do |format|
       if @page.save
@@ -53,11 +66,17 @@ class PagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    @page = Page.find(params[:id])
+    @page = Page.friendly.find(params[:id])
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_site
+    # temporary until Current model is set up
+    @current_site = Site.first
   end
 
   # Only allow a list of trusted parameters through.
   def page_params
-    params.require(:page).permit(:title, :slug, :body, :user_id, :position, :parent_id)
+    params.require(:page).permit(:title, :body)
   end
 end
