@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
     "@jridgewell/sourcemap-codec": "^1.4.14",
     "@js-from-routes/client": "^1.0.3",
