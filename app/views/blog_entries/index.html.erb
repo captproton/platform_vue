@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Blog entries</h1>
+
+<div id="blog_entries">
+  <% @blog_entries.each do |blog_entry| %>
+    <%= render blog_entry %>
+    <p>
+      <%= link_to "Show this blog entry", blog_entry %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New blog entry", new_blog_entry_path %>
