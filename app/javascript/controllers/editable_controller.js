@@ -1,9 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
+import debounce from "lodash.debounce"
 
 export default class extends Controller {
-  connect() {
-    this.element = "Hello Editible!"
-  }
+  static targets = ["content", "input"]
+
+  changed = debounce(() =>{
+    console.log("something changed")
+    this.inputTarget.value = this.contentTarget.innerHTML
+    this.inputTarget.form.requestSubmit()
+  }, 1000)
 }
 
     // static targets = ["content", "input"]

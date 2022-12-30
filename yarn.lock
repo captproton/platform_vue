@@ -492,6 +492,11 @@ local-time@^2.1.0:
   resolved "https://registry.npmjs.org/local-time/-/local-time-2.1.0.tgz"
   integrity sha512-4rB/8EkJIZ8O8Y5q536fSsRbzXOI0cL30l3ZKm4ISPC4D8jYOhRp/MpAaGKAYUvVIqkojT0c7kJk0RlnwtlR2w==
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 magic-string@^0.25.7:
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.9.tgz#de7f9faf91ef8a1c91d02c2e5314c8277dbcdd1c"
@@ -625,12 +630,7 @@ spark-md5@^3.0.1:
   resolved "https://registry.npmjs.org/spark-md5/-/spark-md5-3.0.2.tgz"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
-stimulus-vite-helpers@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/stimulus-vite-helpers/-/stimulus-vite-helpers-3.0.1.tgz"
-  integrity sha512-v8vii8wTyzbH5REE3Z6DbtKqnXEuEQ3ylYs4jQRmLAQrH9vlii7p98MG8gIii1anEEPmnBB1JWWvxKXGZh7apQ==
-
-stimulus-vite-helpers@^3.0.1:
+stimulus-vite-helpers@^3.0.0, stimulus-vite-helpers@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/stimulus-vite-helpers/-/stimulus-vite-helpers-3.0.1.tgz#930a3c88b01e0754d43e5250ed66f09e5ad242c8"
   integrity sha512-v8vii8wTyzbH5REE3Z6DbtKqnXEuEQ3ylYs4jQRmLAQrH9vlii7p98MG8gIii1anEEPmnBB1JWWvxKXGZh7apQ==
