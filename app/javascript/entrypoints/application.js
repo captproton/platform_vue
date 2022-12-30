@@ -28,7 +28,7 @@ Turbo.start()
 // const channels = import.meta.globEager('./**/*_channel.js')
 
 // Example: Import a stylesheet in app/frontend/index.css
-import '~/index.css'
+// import '~/index.css'
 // import '~/styles/background.css'
 // import '~/frontend/styles/background.css'
 
@@ -39,10 +39,7 @@ import { createApp } from "vue";
 import App from "../components/App.vue";
 
 // Create Vue App
-const app = createApp(App).mount("#app");
+// const app = createApp(App).mount("#app");
+const app = createApp(App).mount('[data-behavior="vue"]');
 
-// Import Components
-import Hello from "../components/Hello.vue";
-
-// Create Vue App
-const hello = createApp(Hello).mount('[data-behavior="vue"]');
+// .mount('[data-behavior="vue"]');

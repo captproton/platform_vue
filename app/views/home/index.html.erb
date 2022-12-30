@@ -4,8 +4,9 @@
 <h2 class="font-bold">experiment</h2>
 <div class="experiment">Now is the Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae id harum numquam? Illo nulla ad sint autem sequi non sed minus laboriosam, harum, suscipit error ex alias, numquam culpa soluta!</div>
 <p>...</p>
-<%= content_tag(:div, "" , id: "app" ) %>
-<div class="container" data-behavior="vue">
+<!-- <div class="container" data-behavior="vue">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident impedit cum eligendi facere deserunt error tempora facilis aliquam sapiente, autem ducimus voluptatibus molestiae unde ut voluptas aut soluta eius quis.</p>
 <app></app>
-</div>
+</div> -->
+<%= content_tag(:div, "" , data: {behavior: "vue"}) %>
+
