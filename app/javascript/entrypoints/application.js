@@ -42,9 +42,9 @@ import Hello from "../components/Hello.vue";
 // Create Vue App
 // const app = createApp(App).mount("#app");
 const zoom = createApp(App).mount('[data-behavior="zoom"]');
-const app = createApp(App).mount('[data-behavior="vue"]');
-const vz = createApp(App).mount('[data-behavior="vz"]');
-const hello = createApp(Hello).mount('[data-behavior="hello"]');
+// const app = createApp(App).mount('[data-behavior="vue"]');
+// const vz = createApp(App).mount('[data-behavior="vz"]');
+// const hello = createApp(Hello).mount('[data-behavior="hello"]');
 // const hello = createApp(Hello).mount('[data-behavior="hello"]');
 
 // import { createApp } from "vue";
@@ -54,3 +54,6 @@ const hello = createApp(Hello).mount('[data-behavior="hello"]');
 //   const app = createApp(App).mount('[data-behavior="vue"]');
 
 // })
+
+// stimulus
+import '../controllers'
