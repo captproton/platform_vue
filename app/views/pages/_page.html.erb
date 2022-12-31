@@ -31,23 +31,25 @@
           </div>
 
           <style>
+
+
             .editable:empty:before {
-                content: attr(data-placeholder);
-                color: #999;
+              content: attr(data-placeholder);
+              color: #999;
             }
           </style>
+
           <div class="pr-[2rem] md:pr-[96px]">
             <%= form_with model: @page, data: {controller: "editable"} do |f| %>
-              <h1 
-                contenteditable 
-                data-editable-target="content" 
-                data-action="keyup->editable#changed" 
-                data-placeholder= "Untitled"
-                class="editable"
-                >
-                <%= page.title %>
-              </h1>
-
+            <!-- nb: no whitespace in the h1 below -->
+            <h1 
+            contenteditable 
+            data-editable-target="content" 
+            data-action="keyup->editable#changed" 
+            data-placeholder= "Untitled"
+            class="editable whitespace-pre-wrap break-words p-1 text-4xl font-bold text-gray-900"
+            ><%= @page.title %></h1>
+  
               <%= f.hidden_field :title, data: {editable_target: "input"} %>
             <% end %>
           </div>
