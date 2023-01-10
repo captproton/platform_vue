@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[show edit update destroy]
-  before_action :set_site, only: %i[index show]
+  before_action :set_site, only: %i[index show create]
   before_action :authenticate_user!
 
   layout 'sites'
@@ -25,8 +25,9 @@ class PagesController < ApplicationController
 
   # POST /pages or /pages.json
   def create
-    @page = Page.new(page_params)
-    @page.update_slug
+    @page = Page.new(user: current_user, site: @current_site)
+    # @page.update_slug
+    # @page = Page.new(user: current_user, site: Site.first)
 
     respond_to do |format|
       if @page.save
@@ -73,6 +74,13 @@ class PagesController < ApplicationController
   def set_site
     # temporary until Current model is set up
     @current_site = Site.first
+
+    # if params[:site_id].present?
+    #   @current_site = Site.find(params[:site])
+    # else
+    #   @current_site = Site.first
+    # end
+
   end
 
   # Only allow a list of trusted parameters through.
